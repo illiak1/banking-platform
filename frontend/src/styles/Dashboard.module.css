@@ -185,3 +185,82 @@
   border-radius: 6px;
   font-size: 12px;
 }
+/* 🧾 Transaction container */
+.txContainer {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* 🧾 Each row */
+.txRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  background: #ffffff;
+  border-radius: 12px;
+  transition: 0.2s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.txRow:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* 📍 Left side */
+.txLeft {
+  display: flex;
+  flex-direction: column;
+}
+
+.txTitle {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.txDate {
+  font-size: 12px;
+  color: #888;
+}
+
+/* 💰 Right side */
+.txRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+/* 💸 Amount */
+.txAmountIn {
+  color: #2ecc71;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.txAmountOut {
+  color: #e74c3c;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+/* 🏷️ Badge */
+.txBadgeIn {
+  margin-top: 4px;
+  font-size: 11px;
+  background: #eafaf1;
+  color: #2ecc71;
+  padding: 3px 6px;
+  border-radius: 6px;
+}
+
+.txBadgeOut {
+  margin-top: 4px;
+  font-size: 11px;
+  background: #fdecea;
+  color: #e74c3c;
+  padding: 3px 6px;
+  border-radius: 6px;
+}
