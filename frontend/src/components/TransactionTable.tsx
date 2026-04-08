@@ -1,5 +1,6 @@
 // src/components/TransactionTable.tsx
 import React from 'react';
+import styles from '../styles/Dashboard.module.css';
 
 interface Transaction {
   id: number;
@@ -14,26 +15,44 @@ interface TransactionTableProps {
 
 const TransactionTable: React.FC<TransactionTableProps> = ({ transactions }) => {
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Date</th>
-          <th>Amount</th>
-          <th>Type</th>
-        </tr>
-      </thead>
-      <tbody>
-        {transactions.map(transaction => (
-          <tr key={transaction.id}>
-            <td>{transaction.id}</td>
-            <td>{transaction.date}</td>
-            <td>{transaction.amount}</td>
-            <td>{transaction.type}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <table className={styles.table}>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Date</th>
+      <th>Amount</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    {transactions.map((tx) => (
+      <tr key={tx.id}>
+        <td>{tx.id}</td>
+        <td>{tx.date}</td>
+        <td
+          className={
+            tx.type === 'OUT'
+              ? styles.outAmount
+              : styles.inAmount
+          }
+        >
+          {tx.type === 'OUT' ? `- $${tx.amount}` : `+ $${tx.amount}`}
+        </td>
+        <td>
+          <span
+            className={
+              tx.type === 'OUT'
+                ? styles.outBadge
+                : styles.inBadge
+            }
+          >
+            {tx.type}
+          </span>
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</table>
   );
 };
 
