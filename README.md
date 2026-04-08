@@ -1,21 +1,59 @@
 # 💳 Mini Banking App
 
-A fullstack banking application built with **React + NestJS + Prisma + PostgreSQL**.
+A full-stack mini banking application built with **React, NestJS, Prisma, and PostgreSQL**.
+
+Users can register, log in, view account details, transfer money, and track transaction history in a modern dashboard.
 
 ---
 
 ## 🚀 Features
 
-* 🔐 User authentication (register & login with JWT)
-* 👤 User dashboard
-* 💰 Account balance display
-* 📊 Transaction history
-* 🧾 Secure backend with guards
-* 🗄️ Prisma ORM + PostgreSQL
+### 🔐 Authentication
+
+* User registration
+* Secure login with JWT
+* Protected routes
+
+### 🏦 Account System
+
+* Automatic account creation on registration
+* Balance tracking
+* Account overview dashboard
+
+### 💸 Transactions
+
+* Send money to other users via email
+* Real-time balance updates
+* Transaction history (IN / OUT)
+
+### 📊 Dashboard UI
+
+* Clean fintech-style interface (inspired by modern banking apps)
+* Styled transaction list
+* Responsive layout
 
 ---
 
-## 🏗️ Project Structure
+## 🛠️ Tech Stack
+
+### Frontend
+
+* React (TypeScript)
+* React Router
+* Axios
+* CSS Modules
+
+### Backend
+
+* NestJS
+* Prisma ORM
+* PostgreSQL
+* JWT Authentication
+* Bcrypt (password hashing)
+
+---
+
+## 📁 Project Structure
 
 ```
 mini-banking/
@@ -24,24 +62,20 @@ mini-banking/
 │   │   └── index.html
 │   ├── src/
 │   │   ├── components/
-│   │   │   ├── Navbar.tsx
 │   │   │   ├── AccountCard.tsx
 │   │   │   └── TransactionTable.tsx
 │   │   ├── pages/
-│   │   │   ├── Register.tsx
 │   │   │   ├── Login.tsx
+│   │   │   ├── Register.tsx
 │   │   │   └── Dashboard.tsx
 │   │   ├── styles/
 │   │   │   ├── globals.css
-│   │   │   ├── Login.module.css
 │   │   │   └── Dashboard.module.css
 │   │   ├── App.tsx
 │   │   └── index.tsx
-│   └── package.json
+│   ├── package.json
 │
 ├── backend/
-│   ├── prisma/
-│   │   └── schema.prisma
 │   ├── src/
 │   │   ├── auth/
 │   │   ├── users/
@@ -49,8 +83,10 @@ mini-banking/
 │   │   ├── prisma/
 │   │   ├── app.module.ts
 │   │   └── main.ts
-│   ├── .env
-│   └── package.json
+│   ├── prisma/
+│   │   └── schema.prisma
+│   ├── .env.example
+│   ├── package.json
 │
 ├── docker-compose.yml
 └── README.md
@@ -60,7 +96,7 @@ mini-banking/
 
 ## ⚙️ Setup Instructions
 
-### 1. Clone the repo
+### 1️⃣ Clone the repository
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/mini-banking.git
@@ -69,7 +105,7 @@ cd mini-banking
 
 ---
 
-### 2. Backend setup
+### 2️⃣ Backend setup
 
 ```bash
 cd backend
@@ -78,8 +114,8 @@ npm install
 
 Create `.env` file:
 
-```
-DATABASE_URL=postgresql://USER:PASSWORD@localhost:5432/dbname
+```env
+DATABASE_URL="postgresql://USER:PASSWORD@localhost:5432/mini_banking"
 JWT_SECRET=your_secret_key
 ```
 
@@ -98,7 +134,7 @@ npm run start:dev
 
 ---
 
-### 3. Frontend setup
+### 3️⃣ Frontend setup
 
 ```bash
 cd ../frontend
@@ -122,36 +158,45 @@ npm start
 ### Transactions
 
 * `GET /transactions`
+* `POST /transactions/transfer`
 
 ---
 
-## 🔐 Authentication
+## 🔐 Environment Variables
 
-* JWT-based authentication
-* Token stored in `localStorage`
-* Protected routes via guards
+Create `.env` in backend:
 
----
-
-## 🛠️ Tech Stack
-
-* **Frontend:** React, TypeScript, Axios
-* **Backend:** NestJS
-* **Database:** PostgreSQL
-* **ORM:** Prisma
-* **Auth:** JWT
+```env
+DATABASE_URL=your_database_url
+JWT_SECRET=your_secret
+```
 
 ---
 
-## 📌 Future Improvements
+## 📸 Screenshots (optional)
 
-* Add money transfer feature
-* Add account creation
-* Improve UI/UX
-* Add tests
+*Add screenshots here later (dashboard, login, transactions UI)*
+
+---
+
+## 🧠 Future Improvements
+
+* 💳 Multiple accounts (Savings / Checking)
+* 📈 Charts (spending analytics)
+* 🔎 Transaction search & filters
+* 🌙 Dark mode
+* 📱 Mobile optimization
+* 🔔 Notifications
 
 ---
 
 ## 👨‍💻 Author
 
 Illia Karban
+GitHub: https://github.com/illiak1
+
+---
+
+## ⭐️ Show your support
+
+If you like this project, give it a ⭐ on GitHub!
