@@ -13,12 +13,26 @@ export class UsersController {
     const userId = req.user.id;
     const user = await this.prisma.user.findUnique({
       where: { id: userId },
-      select: { email: true, createdAt: true, accounts: { select: { balance: true } } },
+      select: {
+      email: true,
+      createdAt: true,
+      accounts: {
+      select: {
+          id: true,        
+          balance: true,
+    },
+  },
+}
     });
 
     if (!user) throw new Error('User not found');
 
     const totalBalance = user.accounts.reduce((sum, acc) => sum + acc.balance, 0);
-    return { email: user.email, createdAt: user.createdAt, balance: totalBalance.toFixed(2) };
+    return {
+  email: user.email,
+  createdAt: user.createdAt,
+  balance: totalBalance.toFixed(2),
+  accountId: user.accounts[0]?.id,
+};
   }
 }
