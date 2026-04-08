@@ -11,27 +11,37 @@ export class TransactionsController {
   constructor(private prisma: PrismaService) {} // inject PrismaService
 
   @UseGuards(JwtAuthGuard)
-  @Get()
-  async getUserTransactions(@Req() req: AuthenticatedRequest, @Res() res: Response) {
-    const userId = req.user.id;
+@Get()
+async getUserTransactions(@Req() req: AuthenticatedRequest, @Res() res: Response) {
+  const userId = req.user.id;
 
-    try {
-      const transactions = await this.prisma.transaction.findMany({
-        where: {
-          OR: [
-            { fromId: userId },
-            { toId: userId },
-          ],
-        },
-        orderBy: { createdAt: 'desc' },
-      });
+  try {
+    // ✅ get user's account
+    const account = await this.prisma.account.findFirst({
+      where: { userId },
+    });
 
-      res.json(transactions);
-    } catch (err) {
-      console.error(err);
-      res.status(500).json({ message: 'Failed to get transactions' });
+    if (!account) {
+      return res.status(404).json({ message: 'Account not found' });
     }
+
+    // ✅ now filter by account ID
+    const transactions = await this.prisma.transaction.findMany({
+      where: {
+        OR: [
+          { fromId: account.id },
+          { toId: account.id },
+        ],
+      },
+      orderBy: { createdAt: 'desc' },
+    });
+
+    res.json(transactions);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Failed to get transactions' });
   }
+}
 
 @Post('transfer')
 @UseGuards(JwtAuthGuard)
