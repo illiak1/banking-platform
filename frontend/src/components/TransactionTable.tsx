@@ -15,44 +15,40 @@ interface TransactionTableProps {
 
 const TransactionTable: React.FC<TransactionTableProps> = ({ transactions }) => {
   return (
-    <table className={styles.table}>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Date</th>
-      <th>Amount</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-    {transactions.map((tx) => (
-      <tr key={tx.id}>
-        <td>{tx.id}</td>
-        <td>{tx.date}</td>
-        <td
+    <div className={styles.txContainer}>
+  {transactions.map((tx) => (
+    <div key={tx.id} className={styles.txRow}>
+      <div className={styles.txLeft}>
+        <div className={styles.txTitle}>
+          {tx.type === 'OUT' ? '⬆️ Sent' : '⬇️ Received'}
+        </div>
+        <div className={styles.txDate}>{tx.date}</div>
+      </div>
+
+      <div className={styles.txRight}>
+        <div
           className={
             tx.type === 'OUT'
-              ? styles.outAmount
-              : styles.inAmount
+              ? styles.txAmountOut
+              : styles.txAmountIn
           }
         >
           {tx.type === 'OUT' ? `- $${tx.amount}` : `+ $${tx.amount}`}
-        </td>
-        <td>
-          <span
-            className={
-              tx.type === 'OUT'
-                ? styles.outBadge
-                : styles.inBadge
-            }
-          >
-            {tx.type}
-          </span>
-        </td>
-      </tr>
-    ))}
-  </tbody>
-</table>
+        </div>
+
+        <div
+          className={
+            tx.type === 'OUT'
+              ? styles.txBadgeOut
+              : styles.txBadgeIn
+          }
+        >
+          {tx.type}
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
   );
 };
 
