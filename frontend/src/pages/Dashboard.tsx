@@ -130,27 +130,6 @@ const DashboardPage: React.FC = () => {
         />
       </div>
 
-      {/* 💸 Transfer Section */}
-      <section style={{ marginTop: '20px' }}>
-        <h3>Transfer Money</h3>
-
-        <input
-          type="email"
-          placeholder="Recipient Email"
-          value={toEmail}
-          onChange={(e) => setToEmail(e.target.value)}
-        />
-
-        <input
-          type="number"
-          placeholder="Amount"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-        />
-
-        <button onClick={handleTransfer}>Send</button>
-      </section>
-
       {/* 📊 Transactions */}
       <section className={styles.transferSection}>
   <h3>Transfer Money</h3>
@@ -176,6 +155,10 @@ const DashboardPage: React.FC = () => {
       Send Money
     </button>
   </div>
+</section>
+<section className={styles.transactionsSection}>
+  <h3>Recent Transactions</h3>
+  <TransactionTable transactions={transactions} />
 </section>
     </div>
   );
