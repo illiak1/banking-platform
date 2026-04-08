@@ -1,0 +1,85 @@
+/* frontend/styles/DashboardPage.module.css */
+
+.dashboardContainer {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.dashboardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.dashboardHeader h2 {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #0f172a;
+}
+
+.logoutBtn {
+  background-color: #fee2e2;
+  color: #ef4444;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.logoutBtn:hover {
+  background-color: #fecaca;
+  color: #dc2626;
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.transactionsSection {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+}
+
+.transactionsSection h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #1e293b;
+}
+
+/* Card Styling for AccountCard component */
+.card {
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  color: white;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.card h3 {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}

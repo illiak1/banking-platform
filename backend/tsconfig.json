@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "module": "Node16",
+    "target": "es2017",
+    "strict": true,
+    "esModuleInterop": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node16",
+    "types": ["node"],
+    "typeRoots": ["./node_modules/@types", "./src/types"]  
+    
+  },
+  "include": [
+    "src/**/*.ts"  
+, "prisma/prisma.service.ts"  ]
+}
