@@ -152,10 +152,31 @@ const DashboardPage: React.FC = () => {
       </section>
 
       {/* 📊 Transactions */}
-      <section className={styles.transactionsSection}>
-        <h3>Recent Transactions</h3>
-        <TransactionTable transactions={transactions} />
-      </section>
+      <section className={styles.transferSection}>
+  <h3>Transfer Money</h3>
+
+  <div className={styles.transferForm}>
+    <input
+      type="email"
+      placeholder="Recipient Email"
+      value={toEmail}
+      onChange={(e) => setToEmail(e.target.value)}
+      className={styles.input}
+    />
+
+    <input
+      type="number"
+      placeholder="Amount"
+      value={amount}
+      onChange={(e) => setAmount(e.target.value)}
+      className={styles.input}
+    />
+
+    <button onClick={handleTransfer} className={styles.sendBtn}>
+      Send Money
+    </button>
+  </div>
+</section>
     </div>
   );
 };
