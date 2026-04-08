@@ -8,6 +8,7 @@ dotenv.config();
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   await app.listen(3000);
+  await app.init();
   console.log('Backend running on http://localhost:3000');
 }
 

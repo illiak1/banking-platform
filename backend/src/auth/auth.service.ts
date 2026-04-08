@@ -8,18 +8,26 @@ export class AuthService {
   constructor(private prisma: PrismaService) {}
 
   async register(email: string, password: string) {
-    // 1. Проверяем, есть ли уже пользователь
+    // 1. Check if the user already exists
     const existingUser = await this.prisma.user.findUnique({ where: { email } });
     if (existingUser) {
       throw new BadRequestException('User already exists');
     }
 
-    // 2. Хэшируем пароль
+    // 2. Hash pass
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // 3. Создаём пользователя
+    // 3. Create user
     const user = await this.prisma.user.create({
-      data: { email, password: hashedPassword },
+      data: {
+        email,
+        password: hashedPassword,
+        accounts: {
+          create: {
+            balance: 0,
+          },
+        },
+      },
     });
 
     return { message: 'User registered', userId: user.id };
