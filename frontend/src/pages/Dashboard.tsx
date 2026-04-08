@@ -1,4 +1,3 @@
-// frontend/pages/Dashboard.tsx
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -22,13 +21,15 @@ interface Transaction {
 const DashboardPage: React.FC = () => {
   const [user, setUser] = useState<User | null>(null);
   const [transactions, setTransactions] = useState<Transaction[]>([]);
-  const navigate = useNavigate();
   const [toEmail, setToEmail] = useState('');
   const [amount, setAmount] = useState('');
 
-  useEffect(() => {
+  const navigate = useNavigate();
+
+  
   const fetchData = async () => {
     const token = localStorage.getItem('token');
+
     if (!token) {
       navigate('/login');
       return;
@@ -43,44 +44,68 @@ const DashboardPage: React.FC = () => {
       const txRes = await axios.get('http://localhost:3000/transactions', {
         headers: { Authorization: `Bearer ${token}` },
       });
-      setTransactions(txRes.data);
-    } catch (err: any) {
-  console.error(err);
+      const formattedTransactions = txRes.data.map((tx: any) => ({
+        id: tx.id,
+        date: new Date(tx.createdAt).toLocaleString(),
+        amount: `${tx.amount}`,
+        type: tx.fromId === tx.toId ? 'SELF' : tx.fromId ? 'OUT' : 'IN',
+      }));
 
-  if (err.response?.status === 401 || err.response?.status === 403) {
-    navigate('/login');
-  } else {
-    alert(err.response?.data?.message || 'Something went wrong');
-  }
-}
+      setTransactions(formattedTransactions);
+    } catch (err: any) {
+      console.error(err);
+
+      if (err.response?.status === 401 || err.response?.status === 403) {
+        navigate('/login');
+      } else {
+        alert(err.response?.data?.message || 'Something went wrong');
+      }
+    }
   };
 
-  fetchData();
-}, [navigate]);
+  // ✅ Load on mount
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-const handleTransfer = async () => {
-  const token = localStorage.getItem('token');
+  // ✅ Transfer money
+  const handleTransfer = async () => {
+    const token = localStorage.getItem('token');
 
-  try {
-    await axios.post(
-      'http://localhost:3000/transactions/transfer',
-      {
-        toEmail,
-        amount: Number(amount),
-      },
-      {
-        headers: { Authorization: `Bearer ${token}` },
-      }
-    );
+    if (!toEmail || !amount) {
+      alert('Please fill all fields');
+      return;
+    }
 
-    alert('Transfer successful');
-    window.location.reload(); // quick refresh
-  } catch (err: any) {
-    alert(err.response?.data?.message || 'Transfer failed');
-  }
-};
+    try {
+      await axios.post(
+        'http://localhost:3000/transactions/transfer',
+        {
+          toEmail,
+          amount: Number(amount),
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
 
+      alert('Transfer successful');
+
+      // clear inputs
+      setToEmail('');
+      setAmount('');
+
+      // refresh data
+      fetchData();
+    } catch (err: any) {
+      console.error(err);
+      alert(err.response?.data?.message || 'Transfer failed');
+    }
+  };
+
+  // ✅ Logout
   const handleLogout = () => {
+    localStorage.removeItem('token');
     navigate('/login');
   };
 
@@ -90,37 +115,41 @@ const handleTransfer = async () => {
     <div className={styles.dashboardContainer}>
       <header className={styles.dashboardHeader}>
         <h2>Welcome, {user.email}</h2>
-        <button onClick={handleLogout} className={styles.logoutBtn}>Logout</button>
+        <button onClick={handleLogout} className={styles.logoutBtn}>
+          Logout
+        </button>
       </header>
 
       <div className={styles.cardsGrid}>
         <AccountCard
           userEmail={user.email}
           createdAt={user.createdAt}
-          balance={`${user.balance} USD`}
+          balance={`${Number(user.balance).toFixed(2)} USD`}
         />
       </div>
 
+      {/* 💸 Transfer Section */}
       <section style={{ marginTop: '20px' }}>
-  <h3>Transfer Money</h3>
+        <h3>Transfer Money</h3>
 
-  <input
-    type="email"
-    placeholder="Recipient Email"
-    value={toEmail}
-    onChange={e => setToEmail(e.target.value)}
-  />
+        <input
+          type="email"
+          placeholder="Recipient Email"
+          value={toEmail}
+          onChange={(e) => setToEmail(e.target.value)}
+        />
 
-  <input
-    type="number"
-    placeholder="Amount"
-    value={amount}
-    onChange={e => setAmount(e.target.value)}
-  />
+        <input
+          type="number"
+          placeholder="Amount"
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
+        />
 
-  <button onClick={handleTransfer}>Send</button>
-</section>
+        <button onClick={handleTransfer}>Send</button>
+      </section>
 
+      {/* 📊 Transactions */}
       <section className={styles.transactionsSection}>
         <h3>Recent Transactions</h3>
         <TransactionTable transactions={transactions} />
