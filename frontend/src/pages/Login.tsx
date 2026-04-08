@@ -27,7 +27,7 @@ const LoginPage: React.FC = () => {
       }
     } catch (err: any) {
       console.error(err);
-      setError('Invalid credentials or server error');
+      setError(err.response?.data?.message || 'Server error');
     }
   };
 

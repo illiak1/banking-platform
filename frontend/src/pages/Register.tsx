@@ -8,6 +8,7 @@ const RegisterPage: React.FC = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,7 +21,7 @@ const RegisterPage: React.FC = () => {
       navigate('/login');
     } catch (err: any) {
       console.error(err);
-      console.log(err.response); // 👈 ADD THIS
+      console.log(err.response); 
       setError(err.response?.data?.message || 'Registration failed!');
     }
   };
