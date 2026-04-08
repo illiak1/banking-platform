@@ -23,6 +23,8 @@ const DashboardPage: React.FC = () => {
   const [user, setUser] = useState<User | null>(null);
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const navigate = useNavigate();
+  const [toEmail, setToEmail] = useState('');
+  const [amount, setAmount] = useState('');
 
   useEffect(() => {
   const fetchData = async () => {
@@ -56,6 +58,28 @@ const DashboardPage: React.FC = () => {
   fetchData();
 }, [navigate]);
 
+const handleTransfer = async () => {
+  const token = localStorage.getItem('token');
+
+  try {
+    await axios.post(
+      'http://localhost:3000/transactions/transfer',
+      {
+        toEmail,
+        amount: Number(amount),
+      },
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+
+    alert('Transfer successful');
+    window.location.reload(); // quick refresh
+  } catch (err: any) {
+    alert(err.response?.data?.message || 'Transfer failed');
+  }
+};
+
   const handleLogout = () => {
     navigate('/login');
   };
@@ -76,6 +100,26 @@ const DashboardPage: React.FC = () => {
           balance={`${user.balance} USD`}
         />
       </div>
+
+      <section style={{ marginTop: '20px' }}>
+  <h3>Transfer Money</h3>
+
+  <input
+    type="email"
+    placeholder="Recipient Email"
+    value={toEmail}
+    onChange={e => setToEmail(e.target.value)}
+  />
+
+  <input
+    type="number"
+    placeholder="Amount"
+    value={amount}
+    onChange={e => setAmount(e.target.value)}
+  />
+
+  <button onClick={handleTransfer}>Send</button>
+</section>
 
       <section className={styles.transactionsSection}>
         <h3>Recent Transactions</h3>
