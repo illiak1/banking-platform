@@ -8,7 +8,7 @@ export class AuthService {
   constructor(private prisma: PrismaService) {}
 
   async register(email: string, password: string) {
-    // 1. Check if the user already exists
+    // 1. Check if the user already exists in the system
     const existingUser = await this.prisma.user.findUnique({ where: { email } });
     if (existingUser) {
       throw new BadRequestException('User already exists');
