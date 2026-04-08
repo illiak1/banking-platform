@@ -23,6 +23,7 @@ const DashboardPage: React.FC = () => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [toEmail, setToEmail] = useState('');
   const [amount, setAmount] = useState('');
+  const [accountId, setAccountId] = useState<number | null>(null);
 
   const navigate = useNavigate();
 
@@ -40,6 +41,7 @@ const DashboardPage: React.FC = () => {
         headers: { Authorization: `Bearer ${token}` },
       });
       setUser(userRes.data);
+      setAccountId(userRes.data.accountId);
 
       const txRes = await axios.get('http://localhost:3000/transactions', {
         headers: { Authorization: `Bearer ${token}` },
@@ -47,8 +49,8 @@ const DashboardPage: React.FC = () => {
       const formattedTransactions = txRes.data.map((tx: any) => ({
         id: tx.id,
         date: new Date(tx.createdAt).toLocaleString(),
-        amount: `${tx.amount}`,
-        type: tx.fromId === tx.toId ? 'SELF' : tx.fromId ? 'OUT' : 'IN',
+        amount: tx.amount.toString(),
+        type: tx.fromId === accountId ? 'OUT' : 'IN',
       }));
 
       setTransactions(formattedTransactions);
