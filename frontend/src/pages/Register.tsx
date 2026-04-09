@@ -1,14 +1,13 @@
-// frontend/pages/Register.tsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import styles from '../styles/Register.module.css'; 
 
 const RegisterPage: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
-  
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,35 +26,39 @@ const RegisterPage: React.FC = () => {
   };
 
   return (
-    <div>
-      <h2>Register</h2>
-      <form onSubmit={handleRegister}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-          required
-        />
-        <button type="submit">Register</button>
-        <p style={{ marginTop: '10px' }}>
-  Already have an account?{' '}
-  <span
-    onClick={() => navigate('/login')}
-    style={{ color: '#2f80ed', cursor: 'pointer' }}
-  >
-    Login
-  </span>
-</p>
-      </form>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+    <div className={styles.container}>
+      <div className={styles.form}>
+        <h2>Registration</h2>
+        <form onSubmit={handleRegister}>
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            className={styles.input}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+            className={styles.input}
+            required
+          />
+          <button type="submit" className={styles.button}>Register</button>
+        </form>
+        <p className={styles.linkText}>
+          Already have an account?{' '}
+          <span
+            onClick={() => navigate('/login')}
+            className={styles.link}
+          >
+            Login
+          </span>
+        </p>
+        {error && <p className={styles.error}>{error}</p>}
+      </div>
     </div>
   );
 };
