@@ -1,0 +1,79 @@
+/* frontend/styles/Register.module.css */
+
+/* Main container for register page, centers form vertically and horizontally */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #f5f6fa;
+}
+
+/* Register form styling */
+.form {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Heading inside register form */
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Input field styling */
+.input {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 100%; /* Full width input */
+}
+
+/* Button styling */
+.button {
+  padding: 10px;
+  background: #2f80ed;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%; /* Full width button */
+}
+
+/* Button hover effect */
+.button:hover {
+  background: #1366d6;
+}
+
+/* Error message styling */
+.error {
+  color: red;
+  margin-top: 10px;
+  font-size: 14px;
+  text-align: center; /* Center error text */
+}
+
+/* Link text styling */
+.linkText {
+  margin-top: 10px;
+  font-size: 14px;
+  text-align: center; /* Centered link text */
+}
+
+/* Link styling */
+.link {
+  color: #2f80ed;
+  cursor: pointer;
+}
+
+/* Link hover effect */
+.link:hover {
+  text-decoration: underline;
+}
