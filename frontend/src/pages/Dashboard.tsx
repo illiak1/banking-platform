@@ -46,14 +46,18 @@ const DashboardPage: React.FC = () => {
       const txRes = await axios.get('http://localhost:3000/transactions', {
         headers: { Authorization: `Bearer ${token}` },
       });
+
+      const accountId = userRes.data.accountId;
+
       const formattedTransactions = txRes.data.map((tx: any) => ({
         id: tx.id,
         date: new Date(tx.createdAt).toLocaleString(),
-        amount: tx.amount.toString(),
+        amount: tx.amount.toFixed(2),
         type: tx.fromId === accountId ? 'OUT' : 'IN',
       }));
 
       setTransactions(formattedTransactions);
+
     } catch (err: any) {
       console.error(err);
 
