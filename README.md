@@ -99,7 +99,7 @@ mini-banking/
 ### 1️⃣ Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/mini-banking.git
+git clone https://github.com/illiak1/mini-banking.git
 cd mini-banking
 ```
 
@@ -176,6 +176,7 @@ JWT_SECRET=your_secret
 ## 📸 Screenshots (optional)
 
 *Add screenshots here later (dashboard, login, transactions UI)*
+
 
 ---
 
