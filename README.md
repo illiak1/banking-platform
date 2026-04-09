@@ -175,16 +175,16 @@ JWT_SECRET=your_secret
 
 ## 📸 Screenshots 
 
+
+### Dashboard Page
+![Dashboard Page](screenshots/DashboardPage.png)
+
 ### Login Page
 ![Login Page](screenshots/LoginPage.png)
-
 
 ### Registration Page
 ![Registration Page](screenshots/RegisterPage.png)
 
-
-### Dashboard Page
-![Dashboard Page](screenshots/DashboardPage.png)
 
 ---
 
