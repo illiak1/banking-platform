@@ -173,10 +173,18 @@ JWT_SECRET=your_secret
 
 ---
 
-## 📸 Screenshots (optional)
+## 📸 Screenshots 
 
 *Add screenshots here later (dashboard, login, transactions UI)*
 
+Login
+![Login Page](screenshots/LoginPage.png)
+
+Registration
+![Registration Page](screenshots/RegisterPage.png)
+
+Dashboard
+![Dashboard Page](screenshots/DashboardPage.png)
 
 ---
 
