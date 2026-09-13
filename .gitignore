@@ -28,3 +28,8 @@ Thumbs.db
 # 🧠 IDE
 .vscode/
 .idea/
+
+# 🤖 AI assistant working files
+CLAUDE.md
+PROJECT_OVERVIEW.md
+.claude/
