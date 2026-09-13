@@ -17,6 +17,11 @@ model User {
   accounts  Account[]
 }
 
+/// NOTE: `balance` additionally carries a database CHECK constraint,
+/// `check_nonnegative_balance` (balance >= 0), added in the
+/// 20260913120000_add_balance_check migration. Prisma's schema language cannot
+/// express CHECK constraints, so it is intentionally absent here — do not
+/// "resolve" the difference by dropping it from the database.
 model Account {
   id        Int      @id @default(autoincrement())
   balance   Float    @default(0)

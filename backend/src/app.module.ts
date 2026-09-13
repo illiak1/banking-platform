@@ -8,8 +8,8 @@ import { PrismaModule } from '../prisma/prisma.module';
   imports: [
     PrismaModule,
     AuthModule,
-    UsersModule,         // <- обязательно
-    TransactionsModule,  // <- обязательно
+    UsersModule, // <- обязательно
+    TransactionsModule, // <- обязательно
   ],
 })
 export class AppModule {}
