@@ -103,6 +103,8 @@ export class TransactionsService {
         throw new BadRequestException('Cannot transfer to your own account');
       }
 
+      // The funds check IS the WHERE clause (not a prior read), so the row lock
+      // and the check happen atomically — closes the race described above.
       const debited = await tx.account.updateMany({
         where: { id: fromAccount.id, balance: { gte: dto.amount } },
         data: { balance: { decrement: dto.amount } },

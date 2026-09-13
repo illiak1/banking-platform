@@ -22,6 +22,8 @@ const Navbar: React.FC = () => {
   const isAuthenticated = Boolean(localStorage.getItem('token'));
 
   const handleLogout = () => {
+    // No server-side session to invalidate — the JWT is stateless, so
+    // dropping it client-side is the entire logout.
     localStorage.removeItem('token');
     navigate('/login');
   };

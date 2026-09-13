@@ -8,6 +8,8 @@ import * as bcrypt from 'bcrypt';
 import * as jwt from 'jsonwebtoken';
 import { PrismaService } from '../../prisma/prisma.service';
 
+// Strength/format rules (length, complexity) live on RegisterDto, not here —
+// this is only the hashing cost factor.
 const BCRYPT_ROUNDS = 10;
 const TOKEN_TTL = '1h';
 

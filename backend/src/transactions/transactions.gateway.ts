@@ -63,6 +63,8 @@ export class TransactionsGateway implements OnGatewayConnection, OnGatewayDiscon
    * connection for.
    */
   handleConnection(socket: Socket): void {
+    // Sockets have no per-request headers, so the token rides in the
+    // handshake payload instead of an Authorization header.
     const token = socket.handshake.auth?.token;
 
     if (typeof token !== 'string' || !token) {
