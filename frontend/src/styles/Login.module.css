@@ -1,67 +1,134 @@
-/* frontend/styles/Login.module.css */
+/* frontend/src/styles/Login.module.css */
 
-/* Main container for login page, centers form vertically and horizontally */
 .container {
   display: flex;
-  justify-content: center; /* Center horizontally */
-  align-items: center;     /* Center vertically */
-  height: 100vh;           /* Full viewport height */
-  background: #f5f6fa;     /* Light background color */
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 60px);
+  padding: 20px;
+  background: linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
 }
 
-/* Login form styling */
 .form {
-  background: white;                     /* White form background */
-  padding: 30px;                         /* Inner spacing */
-  border-radius: 10px;                   /* Rounded corners */
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Subtle shadow for depth */
-  width: 300px;                          /* Fixed form width */
+  background: white;
+  padding: 36px 32px;
+  border-radius: 16px;
+  box-shadow:
+    0 1px 3px 0 rgba(0, 0, 0, 0.1),
+    0 20px 40px -12px rgba(15, 23, 42, 0.12);
+  width: 100%;
+  max-width: 380px;
   display: flex;
-  flex-direction: column;                /* Stack children vertically */
+  flex-direction: column;
 }
 
-/* Input fields styling */
-.input {
-  margin-bottom: 15px;                   /* Spacing between inputs */
-  padding: 10px;                         /* Inner padding */
-  border: 1px solid #ddd;                /* Light border */
-  border-radius: 5px;                     /* Rounded corners */
+.form h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.02em;
 }
 
-/* Submit button styling */
-.button {
-  padding: 10px;                         /* Inner spacing */
-  background: #2f80ed;                   /* Primary blue background */
-  color: white;                           /* White text */
-  border: none;                           /* Remove default border */
-  border-radius: 5px;                     /* Rounded corners */
-  cursor: pointer;                        /* Pointer on hover */
-}
-
-/* Button hover effect */
-.button:hover {
-  background: #1366d6;                    /* Darker blue on hover */
-}
-
-/* Error message styling */
-.error {
-  color: red;                             /* Red text for errors */
-  margin-top: 10px;                        /* Space above error message */
-}
-
-/* Link text container (e.g., "Don't have an account?") */
-.linkText {
-  margin-top: 10px;
+.subtitle {
+  color: #64748b;
   font-size: 14px;
+  margin-top: 6px;
+  margin-bottom: 24px;
 }
 
-/* Link styling inside linkText */
+.field {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 6px;
+}
+
+.input {
+  padding: 11px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 14px;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.inputError {
+  border-color: #ef4444;
+}
+
+.inputError:focus {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+}
+
+.fieldError {
+  color: #dc2626;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.button {
+  margin-top: 8px;
+  padding: 12px;
+  background: #6366f1;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.button:hover:not(:disabled) {
+  background: #4f46e5;
+}
+
+.button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.error {
+  color: #dc2626;
+  margin-top: 14px;
+  font-size: 13px;
+  text-align: center;
+  white-space: pre-line;
+}
+
+.linkText {
+  margin-top: 18px;
+  font-size: 14px;
+  text-align: center;
+  color: #64748b;
+}
+
 .link {
-  color: #2f80ed;                         /* Blue link color */
-  cursor: pointer;                         /* Pointer on hover */
+  color: #4f46e5;
+  font-weight: 600;
+  cursor: pointer;
 }
 
-/* Hover effect for links */
 .link:hover {
-  text-decoration: underline;             /* Underline on hover */
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .form {
+    padding: 28px 22px;
+  }
 }

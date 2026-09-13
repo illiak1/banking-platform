@@ -1,79 +1,155 @@
-/* frontend/styles/Register.module.css */
+/* frontend/src/styles/Register.module.css */
 
-/* Main container for register page, centers form vertically and horizontally */
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background: #f5f6fa;
+  min-height: calc(100vh - 60px);
+  padding: 20px;
+  background: linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
 }
 
-/* Register form styling */
 .form {
   background: white;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  width: 300px;
+  padding: 36px 32px;
+  border-radius: 16px;
+  box-shadow:
+    0 1px 3px 0 rgba(0, 0, 0, 0.1),
+    0 20px 40px -12px rgba(15, 23, 42, 0.12);
+  width: 100%;
+  max-width: 380px;
+}
+
+.form h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+  text-align: left;
+  margin-bottom: 0;
+}
+
+.subtitle {
+  color: #64748b;
+  font-size: 14px;
+  margin-top: 6px;
+  margin-bottom: 24px;
+}
+
+.field {
+  margin-bottom: 16px;
   display: flex;
   flex-direction: column;
 }
 
-/* Heading inside register form */
-h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #333;
+.label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 6px;
 }
 
-/* Input field styling */
 .input {
-  margin-bottom: 15px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  width: 100%; /* Full width input */
+  padding: 11px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 14px;
+  width: 100%;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
 }
 
-/* Button styling */
+.input:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.inputError {
+  border-color: #ef4444;
+}
+
+.inputError:focus {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+}
+
+.fieldError {
+  color: #dc2626;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.ruleList {
+  list-style: none;
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.ruleList li {
+  font-size: 12px;
+}
+
+.ruleMet {
+  color: #16a34a;
+}
+
+.ruleUnmet {
+  color: #94a3b8;
+}
+
 .button {
-  padding: 10px;
-  background: #2f80ed;
+  margin-top: 8px;
+  padding: 12px;
+  background: #6366f1;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
   cursor: pointer;
-  width: 100%; /* Full width button */
+  width: 100%;
+  transition: background 0.15s;
 }
 
-/* Button hover effect */
-.button:hover {
-  background: #1366d6;
+.button:hover:not(:disabled) {
+  background: #4f46e5;
 }
 
-/* Error message styling */
+.button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
 .error {
-  color: red;
-  margin-top: 10px;
-  font-size: 14px;
-  text-align: center; /* Center error text */
+  color: #dc2626;
+  margin-top: 14px;
+  font-size: 13px;
+  text-align: center;
 }
 
-/* Link text styling */
 .linkText {
-  margin-top: 10px;
+  margin-top: 18px;
   font-size: 14px;
-  text-align: center; /* Centered link text */
+  text-align: center;
+  color: #64748b;
 }
 
-/* Link styling */
 .link {
-  color: #2f80ed;
+  color: #4f46e5;
+  font-weight: 600;
   cursor: pointer;
 }
 
-/* Link hover effect */
 .link:hover {
   text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .form {
+    padding: 28px 22px;
+  }
 }

@@ -1,0 +1,25 @@
+{
+  "root": true,
+  "env": { "browser": true, "es2021": true, "node": true },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "sourceType": "module",
+    "ecmaFeatures": { "jsx": true }
+  },
+  "settings": { "react": { "version": "detect" } },
+  "extends": [
+    "react-app",
+    "react-app/jest",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
+    // document.getElementById('root')! in index.tsx is CRA's own default
+    // bootstrap pattern — the element is guaranteed to exist by public/index.html.
+    "@typescript-eslint/no-non-null-assertion": "off"
+  }
+}

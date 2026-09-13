@@ -2,53 +2,56 @@
 import React from 'react';
 import styles from '../styles/Dashboard.module.css';
 
-interface Transaction {
+export interface Transaction {
   id: number;
-  date: string;
-  amount: string;
-  type: string;
+  createdAt: string;
+  amount: number;
+  direction: 'IN' | 'OUT';
+  counterpartyEmail: string;
 }
 
 interface TransactionTableProps {
   transactions: Transaction[];
+  /** Shown when transactions is empty — different copy for "no history" vs "no matches". */
+  emptyMessage?: string;
 }
 
-const TransactionTable: React.FC<TransactionTableProps> = ({ transactions }) => {
+const TransactionTable: React.FC<TransactionTableProps> = ({
+  transactions,
+  emptyMessage = 'No transactions yet.',
+}) => {
+  if (transactions.length === 0) {
+    return <p className={styles.emptyState}>{emptyMessage}</p>;
+  }
+
   return (
     <div className={styles.txContainer}>
-  {transactions.map((tx) => (
-    <div key={tx.id} className={styles.txRow}>
-      <div className={styles.txLeft}>
-        <div className={styles.txTitle}>
-          {tx.type === 'OUT' ? '⬆️ Sent' : '⬇️ Received'}
-        </div>
-        <div className={styles.txDate}>{tx.date}</div>
-      </div>
+      {transactions.map((tx) => (
+        <div key={tx.id} className={styles.txRow}>
+          <div className={styles.txLeft}>
+            <div className={styles.txTitle}>
+              {tx.direction === 'OUT' ? '⬆️ Sent to' : '⬇️ Received from'}{' '}
+              <span className={styles.txCounterparty}>{tx.counterpartyEmail}</span>
+            </div>
+            <div className={styles.txDate}>{new Date(tx.createdAt).toLocaleString()}</div>
+          </div>
 
-      <div className={styles.txRight}>
-        <div
-          className={
-            tx.type === 'OUT'
-              ? styles.txAmountOut
-              : styles.txAmountIn
-          }
-        >
-          {tx.type === 'OUT' ? `- $${tx.amount}` : `+ $${tx.amount}`}
-        </div>
+          <div className={styles.txRight}>
+            <div
+              className={tx.direction === 'OUT' ? styles.txAmountOut : styles.txAmountIn}
+            >
+              {tx.direction === 'OUT' ? '-' : '+'} ${tx.amount.toFixed(2)}
+            </div>
 
-        <div
-          className={
-            tx.type === 'OUT'
-              ? styles.txBadgeOut
-              : styles.txBadgeIn
-          }
-        >
-          {tx.type}
+            <div
+              className={tx.direction === 'OUT' ? styles.txBadgeOut : styles.txBadgeIn}
+            >
+              {tx.direction}
+            </div>
+          </div>
         </div>
-      </div>
+      ))}
     </div>
-  ))}
-</div>
   );
 };
 
