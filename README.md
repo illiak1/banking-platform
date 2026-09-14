@@ -1,4 +1,4 @@
-# 💳 Mini Banking
+# 💳 Banking Platform
 
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
 ![NestJS](https://img.shields.io/badge/NestJS-E0234E?logo=nestjs&logoColor=white)
