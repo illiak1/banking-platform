@@ -14,6 +14,27 @@ Socket.IO**.
 
 ---
 
+## 🎬 See It in Action
+
+![Login Page](./screenshots/login.png)
+*Login — clean, centered form with inline validation.*
+
+![Dashboard](./screenshots/dashboard.png)
+*Dashboard — balance front and center, a live-connection indicator for the WebSocket feed, and a
+real transfer/history feed for a seeded account.*
+
+![Real-time transfer](./screenshots/transfer-realtime.png)
+*Real-time transfer: Alice sends $50 to Bob, Bob receives it instantly without refresh — two separate
+logged-in sessions, side by side, captured at the moment the transfer commits.*
+
+![Transactions](./screenshots/transactions.png)
+*Transaction history — filterable by date range, amount range, and counterparty (filtered to "bob" here).*
+
+![Profile](./screenshots/profile.png)
+*Profile — email, member-since date, account ID, and balance at a glance.*
+
+---
+
 ## ✨ Features
 
 **Authentication & security**
@@ -252,27 +273,6 @@ RUN_DB_TESTS=1 npm test   # also runs a concurrency test against a real Postgres
 
 ---
 
-## 📸 Screenshots
-
-![Login Page](./screenshots/login.png)
-*Login — clean, centered form with inline validation.*
-
-![Dashboard](./screenshots/dashboard.png)
-*Dashboard — balance front and center, a live-connection indicator for the WebSocket feed, and a
-real transfer/history feed for a seeded account.*
-
-![Real-time transfer](./screenshots/transfer-realtime.png)
-*Real-time transfer: Alice sends $50 to Bob, Bob receives it instantly without refresh — two separate
-logged-in sessions, side by side, captured at the moment the transfer commits.*
-
-![Transactions](./screenshots/transactions.png)
-*Transaction history — filterable by date range, amount range, and counterparty (filtered to "bob" here).*
-
-![Profile](./screenshots/profile.png)
-*Profile — email, member-since date, account ID, and balance at a glance.*
-
----
-
 ## 🧭 What's Next
 
 - [ ] Multiple accounts per user (checking / savings)
@@ -290,9 +290,3 @@ logged-in sessions, side by side, captured at the moment the transfer commits.*
 
 **Illia Karban**
 GitHub: [@illiak1](https://github.com/illiak1)
-
----
-
-## ⭐️ Show your support
-
-If you like this project, give it a ⭐ on GitHub!
